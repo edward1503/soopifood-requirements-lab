@@ -1,0 +1,132 @@
+{
+  "status": "PASS",
+  "scope": "Document, parser, reference-arithmetic and evidence checks only",
+  "checks": [
+    {
+      "name": "Required output files exist",
+      "status": "PASS",
+      "detail": "35 non-empty activity outputs"
+    },
+    {
+      "name": "Interview guide structure",
+      "status": "PASS",
+      "detail": "10 questions, 20 optional probes, 6 sections in each guide"
+    },
+    {
+      "name": "Simulated research and walkthrough source identifiers",
+      "status": "PASS",
+      "detail": "8 interviews, 2 observations, 80 interview entries, 4 walkthroughs"
+    },
+    {
+      "name": "Revised persona structure and source tags",
+      "status": "PASS",
+      "detail": "3 personas; 4 sections each; all 48 bullets source-tagged"
+    },
+    {
+      "name": "Functional requirements: IDs, source references and behaviour form",
+      "status": "PASS",
+      "detail": "24 unique, source-linked atomic FR rows"
+    },
+    {
+      "name": "NFR IDs, categories, thresholds, procedures and FR references",
+      "status": "PASS",
+      "detail": "12 NFRs, 8 categories; real privacy threshold remains TBC"
+    },
+    {
+      "name": "Stories: vertical-role text, criterion count and references",
+      "status": "PASS",
+      "detail": "10 manager-visible stories, 3–4 criteria each, no point estimates"
+    },
+    {
+      "name": "Complete planned requirement coverage",
+      "status": "PASS",
+      "detail": "24/24 FRs and 12/12 NFRs have story owners; execution unclaimed"
+    },
+    {
+      "name": "Supplied YAML IDs and estimates",
+      "status": "PASS",
+      "detail": "15 stories / 58 source points, 2 requests, capacity 50"
+    },
+    {
+      "name": "Planning allocations preserve titles, estimates and uniqueness",
+      "status": "PASS",
+      "detail": "All allocations use exactly 50 points; 29/10/11 → 32/10/8 → 34/10/6"
+    },
+    {
+      "name": "Planning summaries match recalculated totals and percentages",
+      "status": "PASS",
+      "detail": "Summary arithmetic and all percentage denominators agree"
+    },
+    {
+      "name": "Changed markers, reasons and funded scope",
+      "status": "PASS",
+      "detail": "Changed sets agree; +2 funded by −2; optional +8 deferred; ratio exception explicit"
+    },
+    {
+      "name": "Preserved first-round artifacts",
+      "status": "PASS",
+      "detail": "First-round MoSCoW and feature hashes unchanged"
+    },
+    {
+      "name": "Provided course files unchanged",
+      "status": "PASS",
+      "detail": "34 supplied files match normalised hashes"
+    },
+    {
+      "name": "Gherkin syntax and required scenario structure",
+      "status": "PASS",
+      "detail": "Official Cucumber parser: 2 valid features, 3 scenarios each, one of each tag"
+    },
+    {
+      "name": "Rewritten feature expectations against an integer reference oracle",
+      "status": "PASS",
+      "detail": "5 concrete expectations checked; reference model only, no application run"
+    },
+    {
+      "name": "Additional reference-model boundary cross-checks",
+      "status": "PASS",
+      "detail": "Five oracle boundaries; below-minimum remains absent from the mandated feature scenarios"
+    },
+    {
+      "name": "DoD evidence quotations and six statuses",
+      "status": "PASS",
+      "detail": "All exact quotes found; D4 met, D2 unknown, four failures, three next-step groups"
+    },
+    {
+      "name": "Generated submission content has no credential-shaped strings",
+      "status": "PASS",
+      "detail": "No GitHub-token-shaped strings in submission documents"
+    },
+    {
+      "name": "README credits and output links",
+      "status": "PASS",
+      "detail": "Author, description and A–I output links present"
+    },
+    {
+      "name": "Local Markdown links resolve",
+      "status": "PASS",
+      "detail": "66 local Markdown links resolve"
+    }
+  ],
+  "summary": {
+    "checks": 21,
+    "passed": 21,
+    "failed": 0,
+    "functionalRequirements": 24,
+    "nonFunctionalRequirements": 12,
+    "stories": 10,
+    "plannedPoints": [
+      50,
+      50,
+      50
+    ]
+  },
+  "productVerification": "NOT RUN — no application or real participant study",
+  "openDecisions": [
+    "Recovery/conflict policy",
+    "Reference normalisation and overrides",
+    "Exact access/device matrix",
+    "Actual privacy/retention approval"
+  ],
+  "featureCoverageGap": "Below-minimum rejection is checked by the reference oracle but not a scenario in the exactly-three-scenario feature"
+}

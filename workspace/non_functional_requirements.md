@@ -1,0 +1,26 @@
+# Part D: Non-functional requirements — revised
+
+**SIMULATED TUTORIAL DATA — provisional targets, not measured results or real stakeholder approval.**
+
+Scope: restaurant tablet and its order service. Given constraints are from prompt 05. All additional numeric targets are illustrative answers NQ-01–NQ-09 in `stakeholder_clarifications.md`. The prompt's EU-customer context is used for this exercise; Part F separately uses the supplied Hanoi-release backlog.
+
+**Peak test workload (NQ-01):** 100 active restaurants × 20 incoming orders/minute each = 2,000 orders/minute, for 30 minutes during the specified 18:00–21:00 peak window. This is a proposed workload, not a measured forecast. Read/update mixes and network characteristics need a recorded test fixture.
+
+| ID | Category | Requirement | Conditions | How to test it | Related FRs |
+|---|---|---|---|---|---|
+| NFR-01 | Performance | p95 end-to-end order/state retrieval latency shall be ≤2 seconds. | Online; NQ-01 load. Source: NQ-02. | QV-01: time request to usable confirmed data; report samples and p95. | FR-01, FR-02, FR-03, FR-11, FR-14, FR-15, FR-16, FR-23 |
+| NFR-02 | Performance | p95 online decision/update service-confirmation latency shall be ≤1.5 seconds. | NQ-01 load; available connection. Source: NQ-02. | QV-02: measure submission to service-confirmed result; exclude outage runs from this online metric. | FR-04, FR-05, FR-06, FR-09, FR-10, FR-12, FR-13, FR-17, FR-19, FR-21, FR-22, FR-24 |
+| NFR-03 | Reliability | Previously service-confirmed changes lost after a 2-minute disconnection shall total 0. | Fault injected after known confirmations. Source: NQ-03. | QV-03: compare committed identifiers and contents before/after the drill. | FR-07, FR-11, FR-14, FR-20 |
+| NFR-04 | Reliability | p95 attempted-change reconciliation time after reconnection shall be ≤10 seconds, with 0 duplicate committed changes. | Same 2-minute drill; recovery/conflict policy `[TBC: FQ-06]`. Source: NQ-03. | QV-04: interrupt/retry an update and inspect final service records and reconciliation times. | FR-07, FR-12, FR-13, FR-19 |
+| NFR-05 | Security | Successful unauthorised cross-restaurant operations shall total 0 in the approved access matrix. | Identity/role matrix `[TBC]`. Source: NQ-05. | QV-05: try each scoped read/write using another restaurant's identity. | FR-01, FR-04, FR-05, FR-08, FR-09, FR-10, FR-16, FR-19, FR-21, FR-22, FR-23, FR-24 |
+| NFR-06 | Security | Retained PAN/CVV occurrences in tablet/order-service storage or logs shall total 0. | Card handling delegated to the provider; synthetic test inputs. Source: prompt 05 and NQ-05. | QV-06: inspect payloads, storage and logs for seeded synthetic card values. | FR-01, FR-02, FR-16, FR-20, FR-21, FR-24 |
+| NFR-07 | Scalability | The service shall sustain 100 restaurants at 20 orders/minute each for 30 minutes while meeting NFR-01/NFR-02. | Peak workload fixture; read/update mix `[TBC]`. Source: NQ-01. | QV-07: run the stated workload and report achieved arrivals, completed work and latency distributions. | FR-01, FR-04, FR-05, FR-07, FR-11, FR-12, FR-13 |
+| NFR-08 | Usability | At least 90% of reference/state lookup tasks shall be correct within 5 seconds. | 20 predefined tasks for each of 6 representative managers, standing at a simulated busy counter. Source: NQ-04. | QV-08: score accuracy and elapsed time for all 120 task trials; threshold is ≥108 successful trials. | FR-01, FR-02, FR-11, FR-14, FR-15, FR-16, FR-23 |
+| NFR-09 | Maintainability | 100% of changed FRs shall link to passing automated regression checks before release. | Each behaviour change; source: NQ-06. | QV-09: inspect change-to-FR-to-test links and their recorded outcomes. | FR-04, FR-05, FR-09, FR-10, FR-12, FR-13, FR-19, FR-24 |
+| NFR-10 | Portability | 100% of agreed core workflow cases shall pass on each of the 2 proposed tablet/browser families. | Android/Chrome and iPad/Safari; exact device/version matrix `[TBC: NQ-07]`. | QV-10: repeat the same cases on the approved, pinned configurations. | FR-01, FR-04, FR-08, FR-09, FR-10, FR-11, FR-14, FR-16, FR-19 |
+| NFR-11 | Compliance | Personal order records shall be deleted within `[TBC: NQ-08]` after their approved retention duration `[TBC: NQ-08]` elapses. | Actual data-owner/privacy approval required; no legal duration assumed. | QV-11: seed dated records and compare deletion against the approved schedule; blocked until values are decided. | FR-20, FR-21, FR-22, FR-23, FR-24 |
+| NFR-12 | Compliance | 100% of personal-data fields used by the tablet shall have an approved purpose, access rule and retention decision before real rollout. | Field inventory and actual approval `[TBC: NQ-09]`. | QV-12: compare every used field against the approval inventory; no approval is inferred from this role-play. | FR-01, FR-02, FR-03, FR-16, FR-20, FR-21, FR-22, FR-24 |
+
+## Questions still requiring actual decisions
+
+Agree recovery/conflict rules (FQ-06), access roles (NQ-05), read/update workload mix (NQ-01), exact devices/versions (NQ-07), retention/deletion durations (NQ-08) and the field-purpose/access inventory (NQ-09). The privacy-related rows are requirements for later review, not a certification of legal compliance.
